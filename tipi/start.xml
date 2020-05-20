@@ -1,0 +1,12 @@
+<!-- All tipi components must be addressed here in order to be able to use them -->
+<tid>
+    <tipi-include definition="init" lazy="true" location="init.xml" />
+    <tipi-include definition="menu" lazy="true" location="menu.xml" />
+
+    <!-- User -->
+    <tipi-include definition="loginDialog" lazy="true" location="user/loginDialog.xml" />
+
+	<!-- Games -->
+    <tipi-include definition="gameListWindow" lazy="true" location="game/gameListWindow.xml" />
+    
+</tid>

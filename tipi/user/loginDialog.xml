@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<tid xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" errorhandler="error" xsi:noNamespaceSchemaLocation="../tipi.xsd">
+    <d.dialog name="loginDialog" h="250" w="500" modal="false" title="{lookup:/Login}" service="user/InitLogin">
+        <onInstantiate>
+            <callService service="'user/InitLogin'" />
+            <block condition="IsEmpty( {local:/SelectedLanguage} )">
+                <setValue to="{localref:/SelectedLanguage}" from="'NL'" />
+            </block>
+        </onInstantiate>
+        <l.border>
+	        <c.gridpanel id="loginPane" constraint="Center" columnWidth="'110 230'">
+	            <onLoad>
+	                <block condition="IsEmpty( {local:/SelectedLanguage} )">
+	                    <setValue to="{localref:/SelectedLanguage}" from="'NL'" />
+	                </block>
+	            <!-- Reset to original -->
+	                <setUsername username="{system:/navajoUsr}" />
+	                <setPassword password="{system:/navajoPwd}" />
+	
+	                <block expression="!IsEmpty( {cookie:/webuser} )">
+	                    <setValue from="{cookie:/webuser}" to="{attributeref:/~/loginPane/UserName:propertyValue}" />
+	                    <setValue from="true" to="{attributeref:/~/loginPane/gridsaveUID/saveUID:propertyValue}" />
+	                    <block expression="!IsEmpty( {cookie:/webpass} )">
+	                        <setValue from="{cookie:/webpass}" to="{attributeref:/~/loginPane/Password:propertyValue}" />
+	                    </block>
+	                </block>
+	            </onLoad>
+	
+	            <c.label id="lblUserName" text="{lookup:/Username}" />
+	            <c.property id="UserName" showlabel="false" propertyname="'/Login/UserName'" />
+	
+	            <c.label id="lblPassword" text="{lookup:/Password}" />
+	            <c.property id="Password" showlabel="false" propertyname="'/Login/Password'">
+	                <onEnter>
+	                    <performTipiMethod name="'fireAction'" path="{component:/~/loginToolbar/login}" />
+	                </onEnter>
+	            </c.property>
+	
+	            <c.label id="lblRemember" text="{lookup:/Remember}" />
+	            <c.gridpanel id="gridsaveUID" columnWidth="'20 210'" service="user/InitLogin">
+	                <c.property id="saveUID" showlabel="false" propertyname="'/Login/SaveUID'" />
+	                <c.hidden style="'loginpicture'" id="DSO" text="''" />
+	            </c.gridpanel>
+	
+	        </c.gridpanel>
+        
+            <c.toolbar id="loginToolbar" constraint="South:52" background="{color:/#FFFFFF}">
+                <c.button id="login" text="{lookup:/Login}" tooltip="{lookup:/Login}" defaultButton="true">
+                    <onActionPerformed>
+                        <setUsername username="{system:/navajoUsr}" />
+                        <setPassword password="{system:/navajoPwd}" />
+                        <setLocale locale="{local:/SelectedLanguage}"/>
+
+                        <callService service="'user/ProcessLogin'" input="{navajo:/user/InitLogin}" breakOnError="true" />
+                        <!-- AFTER THIS CALL SUCCEEDS, THE DIALOG WILL BE DISPOSED, SO NO ACTIONS BELOW PLEASE -->
+                    </onActionPerformed>
+                </c.button>
+                <c.button id="btnForgotPassword" text="{lookup:/ForgotPassword}" tooltip="{lookup:/ForgotPassword}">
+                    <onActionPerformed>
+                    	<showInfo text="'Should do something with resetting password'" />
+                    </onActionPerformed>
+                </c.button>
+            </c.toolbar>
+    	</l.border>
+    </d.dialog>
+</tid>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.pde.ui.EquinoxLauncher">
+<booleanAttribute key="append.args" value="true"/>
+<booleanAttribute key="automaticAdd" value="false"/>
+<booleanAttribute key="automaticValidate" value="false"/>
+<stringAttribute key="bootstrap" value=""/>
+<stringAttribute key="checked" value="[NONE]"/>
+<booleanAttribute key="clearConfig" value="true"/>
+<stringAttribute key="configLocation" value="${workspace_loc}/.metadata/.plugins/org.eclipse.pde.core/RRWeb_Vaadin"/>
+<booleanAttribute key="default" value="true"/>
+<booleanAttribute key="default_auto_start" value="true"/>
+<intAttribute key="default_start_level" value="5"/>
+<booleanAttribute key="includeOptional" value="false"/>
+<stringAttribute key="karaf_boot_features" value=""/>
+<booleanAttribute key="karaf_features_management" value="true"/>
+<stringAttribute key="karaf_remote_console_password" value="karaf"/>
+<stringAttribute key="karaf_remote_console_username" value="karaf"/>
+<booleanAttribute key="karaf_start_local_console" value="true"/>
+<booleanAttribute key="karaf_start_remote_console" value="false"/>
+<mapAttribute key="org.eclipse.debug.core.environmentVariables">
+<mapEntry key="FILE_REPOSITORY_DEPLOYMENT" value="development"/>
+<mapEntry key="FILE_REPOSITORY_MONITORED" value=""/>
+<mapEntry key="FILE_REPOSITORY_PATH" value="${project_loc:RRWeb}"/>
+<mapEntry key="FILE_REPOSITORY_TYPE" value="tipi"/>
+</mapAttribute>
+<booleanAttribute key="org.eclipse.jdt.launching.ATTR_USE_START_ON_FIRST_THREAD" value="true"/>
+<stringAttribute key="org.eclipse.jdt.launching.JRE_CONTAINER" value="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-os ${target.os} -ws ${target.ws} -arch ${target.arch} -nl ${target.nl} -console"/>
+<stringAttribute key="org.eclipse.jdt.launching.SOURCE_PATH_PROVIDER" value="org.eclipse.pde.ui.workbenchClasspathProvider"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Declipse.ignoreApp=true -Dosgi.noShutdown=true -XX:MaxPermSize=190m -Xmx800M -Djava.awt.headless=true -Dorg.osgi.framework.startlevel.beginning=1 -Dorg.osgi.framework.system.packages.extra=sun.misc -Dorg.osgi.service.http.port=7253"/>
+<stringAttribute key="pde.version" value="3.3"/>
+<booleanAttribute key="show_selected_only" value="false"/>
+<stringAttribute key="target_bundles" value="com.dexels.immutable.api@default:default,com.dexels.immutable.impl@default:default,com.dexels.pubsub.rx2.api@default:default,com.dexels.replication.api@default:default,com.dexels.replication.impl.json@default:default,com.dexels.replication.impl@default:default,com.dexels.repository.api@default:default,com.dexels.repository.file@default:default,com.dexels.resourcebundle*2.0.2.201610130917@default:default,com.dexels.resourcebundle*2.0.3@default:default,com.dexels.server.mgmt.api@default:default,com.dexels.server.mgmt.impl@default:default,com.fasterxml.aalto-xml@default:default,com.fasterxml.jackson.core.jackson-annotations@default:default,com.fasterxml.jackson.core.jackson-core@default:default,com.fasterxml.jackson.core.jackson-databind@default:default,com.google.guava@default:default,com.sun.activation.javax.activation@default:default,com.vaadin@default:default,io.reactivex.rxjava2.rxjava@default:default,javax.servlet@default:default,org.apache.aries.spifly.dynamic.bundle@default:default,org.apache.aries.util@default:default,org.apache.commons.codec@default:default,org.apache.commons.fileupload@default:default,org.apache.commons.io@default:default,org.apache.commons.lang@default:default,org.apache.commons.logging@default:default,org.apache.commons.net@default:default,org.apache.felix.configadmin@default:default,org.apache.felix.fileinstall@default:default,org.apache.felix.gogo.runtime@default:default,org.apache.felix.gogo.shell@default:default,org.apache.felix.inventory@default:default,org.apache.felix.metatype@default:default,org.apache.felix.scr*2.0.14.v20180822-1822@1:true,org.apache.felix.scr*2.1.18@1:true,org.apache.felix.webconsole.plugins.ds@default:default,org.apache.felix.webconsole@default:default,org.apache.servicemix.bundles.jzlib@default:default,org.apache.xbean.bundleutils@default:default,org.apache.xbean.finder@default:default,org.eclipse.jetty.client@default:default,org.eclipse.jetty.continuation*9.4.11.v20180605@default:default,org.eclipse.jetty.continuation*9.4.22.v20191022@default:default,org.eclipse.jetty.http*9.4.11.v20180605@default:default,org.eclipse.jetty.http*9.4.22.v20191022@default:default,org.eclipse.jetty.io*9.4.11.v20180605@default:default,org.eclipse.jetty.io*9.4.22.v20191022@default:default,org.eclipse.jetty.proxy@default:default,org.eclipse.jetty.security*9.4.11.v20180605@default:default,org.eclipse.jetty.security*9.4.22.v20191022@default:default,org.eclipse.jetty.server*9.4.11.v20180605@default:default,org.eclipse.jetty.server*9.4.22.v20191022@default:default,org.eclipse.jetty.servlet*9.4.11.v20180605@default:default,org.eclipse.jetty.servlet*9.4.22.v20191022@default:default,org.eclipse.jetty.servlets@default:default,org.eclipse.jetty.util*9.4.11.v20180605@default:default,org.eclipse.jetty.util*9.4.22.v20191022@default:default,org.eclipse.jetty.websocket.api@default:default,org.eclipse.jetty.websocket.client@default:default,org.eclipse.jetty.websocket.common@default:default,org.eclipse.jetty.websocket.server@default:default,org.eclipse.jetty.websocket.servlet@default:default,org.eclipse.jetty.xml@default:default,org.eclipse.osgi.services@default:default,org.eclipse.osgi.util@default:default,org.eclipse.osgi@-1:true,org.objectweb.asm.commons@default:default,org.objectweb.asm.tree@default:default,org.objectweb.asm@default:default,org.ops4j.pax.web.pax-web-api@default:default,org.ops4j.pax.web.pax-web-extender-whiteboard@default:default,org.ops4j.pax.web.pax-web-jetty@default:default,org.ops4j.pax.web.pax-web-runtime@default:default,org.ops4j.pax.web.pax-web-spi@default:default,org.osgi.service.jdbc@default:default,org.reactivestreams.reactive-streams@default:default,slf4j.api@default:default,slf4j.simple@default:false,stax2-api@default:default"/>
+<booleanAttribute key="tracing" value="false"/>
+<booleanAttribute key="useCustomFeatures" value="false"/>
+<booleanAttribute key="useDefaultConfigArea" value="true"/>
+<stringAttribute key="workspace_bundles" value="com.dexels.navajo.api@default:default,com.dexels.navajo.authentication.api@default:default,com.dexels.navajo.client.async@default:default,com.dexels.navajo.client.impl.javanet@default:default,com.dexels.navajo.client.nql@default:default,com.dexels.navajo.client@default:default,com.dexels.navajo.core@default:default,com.dexels.navajo.document.stream@default:default,com.dexels.navajo.document@default:default,com.dexels.navajo.function@default:default,com.dexels.navajo.listeners.external@default:default,com.dexels.navajo.osgi.console@default:default,com.dexels.navajo.resource@default:default,com.dexels.navajo.tipi.mail@default:default,com.dexels.navajo.tipi.vaadin@default:default,com.dexels.navajo.tipi@default:default,com.dexels.navajo.version@default:default,com.dexels.navajo.webconsole.branding@default:false"/>
+</launchConfiguration>

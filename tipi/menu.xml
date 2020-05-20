@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<tid xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" errorhandler="error" xsi:noNamespaceSchemaLocation="tipi.xsd">
+<d.menubar name="menu">
+    <c.menu id="game" text="{lookup:/Game}">
+        <c.menuitem id="gameList" text="{lookup:/List}">
+            <onActionPerformed>
+				<instantiate force="true" id="'gameListWindow'" name="'gameListWindow'" location="{component://init/desktop}" />
+				<callService input="{navajo:/InitMessageStoreData}" service="'game/ProcessQueryGameListForUser'" />
+            </onActionPerformed>
+        </c.menuitem>
+    </c.menu>
+    <c.menu id="system" text="{lookup:/System}">
+        <c.menuitem id="changePassword" text="{lookup:/ChangePassword}">
+            <onActionPerformed>
+            <!-- TODO -->
+            <showInfo text="'This should allow you to change your password'"/>
+<!--                 <instantiate force="true" id="'currentDetail'" name="'passwordWindow'" location="{component://init/main}" /> -->
+            </onActionPerformed>
+        </c.menuitem>
+        <c.menuitem id="logout" text="{lookup:/LogOut}">
+            <onActionPerformed>
+                <exit />
+            </onActionPerformed>
+        </c.menuitem>
+        <c.menuitem id="flushCache" text="{lookup:/ReloadScreens}" visible="{system:/platform} == 'TESTING' OR {system:/platform} == 'DEVELOPMENT'">
+            <onActionPerformed>
+                <flushCache/>
+            </onActionPerformed>
+        </c.menuitem>
+    </c.menu>
+</d.menubar>
+</tid>

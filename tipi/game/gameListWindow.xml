@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<tid xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" errorhandler="error" xsi:noNamespaceSchemaLocation="../tipi.xsd">
+    <d.window name="gameListWindow" h="500" w="1000" modal="false" title="{lookup:/List}">
+        <l.border>
+        	<c.tipitable id="gamesTable" service="game/ProcessQueryGameListForUser" messagepath="'/Games'">
+                <column name="Name" label="{lookup:/Name}" editable="false" size="240"/>
+                <column name="ScenarioName" label="{lookup:/ScenarioName}" editable="false" size="205"/>
+                <column name="CurrentRound" label="{lookup:/CurrentRound}" editable="false" size="100"/>
+                <column name="StatusDescription" label="{lookup:/Status}" editable="false" size="100"/>
+                <onActionPerformed>
+                    <button.fireAction path="{component:/~/toolbar/openGame}"/>
+                </onActionPerformed>
+            </c.tipitable>
+            <c.toolbar id="toolbar" constraint="South:50">
+                <c.button id="openGame" text="{lookup:/Open}" tooltip="{lookup:/OpenGame}">
+                    <onActionPerformed>
+			            <block expression="{attribute:/~/table:selectedIndex} == -1">
+			                <showInfo text="{lookup:/SelectARow}"/>
+			            </block>
+			            <block expression="{attribute:/~/table:selectedIndex} != -1">
+                            <setValue from="{property:/~/gamesTable:selectedMessage:GameId}" to="{propertyref:/InitMessageStoreData:/UserContext/GameId}"/>
+                            <showInfo text="'Opening game with id: ' + {property:/InitMessageStoreData:/UserContext/GameId}"/>
+<!--                             <instantiate force="true" id="'gameWindow'" name="'gameWindow'" location="{component://init/main}"/> -->
+<!--                             <callService input="{navajo:/InitMessageStoreData}" service="'game/ProcessQueryGame'"/> -->
+                        </block>
+                    </onActionPerformed>
+                </c.button>        		
+			</c.toolbar>
+		</l.border>
+	</d.window>
+</tid>

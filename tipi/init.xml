@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<tid xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" errorhandler="error" xsi:noNamespaceSchemaLocation="tipi.xsd">
+   <client-config impl="'indirect'" password="{system:/navajoPwd}" server="{system:/navajoServer}" username="{system:/navajoUsr}" />
+   <d.frame background="{color:/#ffffff}" centered="true" icon="{resource:/icons/24/logo_mini.png}" name="init" title="{lookup:/RoboRallyApplication}" visible="true" w="1024">
+      <onInstantiate>
+         <instantiate id="'loginDialog'" location="{tipi:/./desktop}" name="'loginDialog'" />
+         <performTipiMethod name="'show'" path="{tipi://init/desktop/loginDialog}" />
+      </onInstantiate>
+		<c.messagestore id="loginResult" service="user/ProcessLogin">
+			<onLoad>
+				<!-- user logged in -->
+				<block expression="[/Result/Authenticated] == true">
+				    <!-- The username returned might not be the same one we typed in. So save the returned one in the global and the original one in the cookie -->
+					<setValue from="{property:/user/ProcessLogin:/Result/UserName}" to="{globalref:/username}" />
+					<block expression="{property:/user/InitLogin:/Login/SaveUID} == true">
+						<setCookie name="'webuser'" value="{property:/user/InitLogin:/Login/UserName}" />
+						<setCookie name="'webpass'" value="{property:/user/InitLogin:/Login/Password}" />
+					</block>
+                    <block expression="{property:/user/InitLogin:UserData/SaveUID} == false">
+                        <setCookie name="'webuser'" value="null" />
+                        <setCookie name="'webpass'" value="null" />
+                    </block>
+
+                    <setLocale locale="{property:/user/ProcessLogin:/Result/PreferredLanguage}"/>
+                    <!-- Re-apply language -->
+                    <frame.attribute path="{component:/init}" title="{lookup:/RoboRallyApplication}"/>
+
+                    <!-- And use the authenticated user name (might be different again) as the one to authenticate webservices with -->
+                    <!-- TODO -->
+<!-- 					<setUsername username="{property:/user/ProcessLogin:/Result/UserName}"/>    -->
+<!-- 					<setPassword password="{property:/user/InitLogin:/UserData/Password}"/> -->
+					
+					<callService service="'InitMessageStoreData'" />
+					<setValue from="{property:/user/ProcessLogin:/Result/UserId}" to="{propertyref:/InitMessageStoreData:/UserContext/UserId}"/>
+
+                    <!-- Check if password needs to be reset... -->
+                    <!-- TODO -->
+<!--                     <block condition="{property:/user/ProcessLogin:/Authenticated/IsFirstUse} == true AND ! {global:/specialLoginMode}"> -->
+<!--                         <instantiate force="true" id="'currentDetail'" name="'passwordWindow'" location="{component://init/desktop}" /> -->
+<!--                     </block> -->
+
+					<dispose path="{component://init/desktop/loginDialog}"/>
+					<instantiate force="true" id="'gameListWindow'" name="'gameListWindow'" location="{component://init/desktop}" />
+					<callService input="{navajo:/InitMessageStoreData}" service="'game/ProcessQueryGameListForUser'" />
+					<instantiate location="{component:/init}" name="'menu'" id="'menu'" constraint="'North:35'" />
+				</block>
+				<!-- login failed, try again -->
+				<block expression="[/Result/Authenticated] == false">
+					<showInfo text="{lookup:/LoginFailed}" />
+				</block>
+			</onLoad>
+
+		</c.messagestore>
+		<l.border>
+			<c.panel id="desktop" constraint="Center" >
+	
+			</c.panel>
+		</l.border>
+	</d.frame>
+</tid>
