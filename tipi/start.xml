@@ -7,6 +7,7 @@
     <tipi-include definition="loginDialog" lazy="true" location="user/loginDialog.xml" />
 
 	<!-- Games -->
+    <tipi-include definition="addGameDialog" lazy="true" location="game/addGameDialog.xml" />
     <tipi-include definition="gameListWindow" lazy="true" location="game/gameListWindow.xml" />
     
 </tid>

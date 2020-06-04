@@ -8,6 +8,11 @@
 				<callService input="{navajo:/InitMessageStoreData}" service="'game/ProcessQueryGameListForUser'" />
             </onActionPerformed>
         </c.menuitem>
+        <c.menuitem id="addGame" text="{lookup:/Add}">
+            <onActionPerformed>
+				<instantiate force="true" id="'addGameDialog'" name="'addGameDialog'" location="{component://init/desktop}" />
+            </onActionPerformed>
+        </c.menuitem>
     </c.menu>
     <c.menu id="system" text="{lookup:/System}">
         <c.menuitem id="changePassword" text="{lookup:/ChangePassword}">

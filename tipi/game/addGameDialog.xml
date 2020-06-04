@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<tid xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" errorhandler="error" xsi:noNamespaceSchemaLocation="../tipi.xsd">
+    <d.dialog name="addGameDialog" h="500" w="1000" modal="false" title="{lookup:/Add}">
+    	<onInstantiate>
+    		<callService service="'game/InitInsertGame'"/>
+    		<callService service="'users/ProcessQueryUsers'"/>
+    		<dialog.show path="{component:/~}"/>
+    	</onInstantiate>
+        <l.border>
+        	<c.gridpanel id="gameDefinition" columnWidth="'120 200 120 200 50'" constraint="North:50" service="'game/InitInsertGame'">
+        		<c.label id="nameLabel" text="{lookup:/Name}"/>
+        		<c.property id="nameProperty" showlabel="false" propertyname="'/NewGame/Name'"/>
+        		<c.label id="scenarioLabel" text="{lookup:/Scenario}"/>
+        		<c.property id="scenarioProperty" showlabel="false" propertyname="'/NewGame/ScenarioName'"/>
+        		<c.button id="previewScenarioButton" text="{lookup:/Preview}" tooltip="{lookup:/PreviewChosenScenario}">
+        			<onActionPerformed>
+        				<block condition="{property:/game/InitInsertGame:/NewGame/ScenarioName} != null AND {property:/game/InitInsertGame:/NewGame/ScenarioName} != '- 1'">
+        					<callService service="'game/ProcessGeneratePreviewImage'" input="{navajo:/game/InitInsertGame}"/>
+        					<block condition="{property:/game/ProcessGeneratePreviewImage:/PreviewImage/Image} != null">
+	        					<openBinary binary="{property:/game/ProcessGeneratePreviewImage:/PreviewImage/Image}" newWindow="true"/>
+        					</block>
+        					<block condition="{property:/game/ProcessGeneratePreviewImage:/PreviewImage/Image} != null">
+        						<showInfo text="{lookup:/ErrorAtGeneratingPreview}"/>
+							</block>        					
+        				</block>
+        				<block condition="{property:/game/InitInsertGame:/NewGame/ScenarioName} != null AND {property:/game/InitInsertGame:/NewGame/ScenarioName} != '- 1'">
+       						<showInfo text="{lookup:/SelectAScenarioToPreview}"/>
+        				</block>
+        			</onActionPerformed>
+        		</c.button>
+        	</c.gridpanel>
+        	<c.tipitable id="userTable" service="user/ProcessQueryUsers" messagepath="'/Users'">
+                <column name="UserName" label="{lookup:/Name}" editable="false" size="240"/>
+            </c.tipitable>
+            <c.toolbar id="toolbar" constraint="South:50">
+                <c.button id="addGame" text="{lookup:/Add}" tooltip="{lookup:/AddGame}">
+                    <onActionPerformed>
+			            <block expression="{attribute:/~/table:selectedIndex} == -1">
+			                <showInfo text="{lookup:/SelectOneOrMoreRows}"/>
+			            </block>
+			            <block expression="{attribute:/~/table:selectedIndex} != -1">
+			            	<block expression="Size( {attribute:/~/userTable:selectedMessages} ) &lt;= 8">
+			            		<injectMessage service="'SelectedUsers'" message="{attribute:/~/userTable:selectedMessages}"/>
+	                            <callService input="MergeNavajo( {navajo:/game/InitInsertGame}, {navajo:/SelectedUsers} )" service="'game/ProcessInsertGame'"/>
+			            	</block>
+			            	<block expression="Size( {attribute:/~/userTable:selectedMessages} ) &gt; 8">
+			            		<showInfo text="{lookup:/CannotCreateGameTooManyUsersSelected}"/>
+			            	</block>
+                        </block>
+                    </onActionPerformed>
+                </c.button>        		
+			</c.toolbar>
+		</l.border>
+	</d.dialog>
+</tid>

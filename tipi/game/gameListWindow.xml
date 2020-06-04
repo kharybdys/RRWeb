@@ -14,10 +14,10 @@
             <c.toolbar id="toolbar" constraint="South:50">
                 <c.button id="openGame" text="{lookup:/Open}" tooltip="{lookup:/OpenGame}">
                     <onActionPerformed>
-			            <block expression="{attribute:/~/table:selectedIndex} == -1">
+			            <block expression="{attribute:/~/gamesTable:selectedIndex} == -1">
 			                <showInfo text="{lookup:/SelectARow}"/>
 			            </block>
-			            <block expression="{attribute:/~/table:selectedIndex} != -1">
+			            <block expression="{attribute:/~/gamesTable:selectedIndex} != -1">
                             <setValue from="{property:/~/gamesTable:selectedMessage:GameId}" to="{propertyref:/InitMessageStoreData:/UserContext/GameId}"/>
                             <showInfo text="'Opening game with id: ' + {property:/InitMessageStoreData:/UserContext/GameId}"/>
 <!--                             <instantiate force="true" id="'gameWindow'" name="'gameWindow'" location="{component://init/main}"/> -->
